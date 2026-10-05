@@ -28,4 +28,8 @@ public interface StudentService {
     List<Student> getAllSortedByLastName(String direction);
 
     Page<Student> getStudentsPaged(int page, int size);
+
+    List<Student> getByMajorJPQL(String major);
+
+    int deleteByEnrollmentYearJPQL(Integer year);
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/students")
@@ -95,5 +96,24 @@ public class StudentController {
 
         return ResponseEntity.ok(
                 studentService.getStudentsPaged(page, size));
+    }
+
+    @GetMapping("/major-jpql/{major}")
+    public ResponseEntity<List<Student>> getStudentsByMajorJPQL(
+            @PathVariable String major) {
+
+        return ResponseEntity.ok(
+                studentService.getByMajorJPQL(major));
+    }
+
+    @DeleteMapping("/year/{year}/jpql")
+    public ResponseEntity<Map<String, Integer>> deleteStudentsByYearJPQL(
+            @PathVariable Integer year) {
+
+        int deletedCount =
+                studentService.deleteByEnrollmentYearJPQL(year);
+
+        return ResponseEntity.ok(
+                Map.of("deletedCount", deletedCount));
     }
 }

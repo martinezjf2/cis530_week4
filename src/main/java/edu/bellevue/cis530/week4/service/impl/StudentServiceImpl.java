@@ -95,4 +95,14 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll(
                 PageRequest.of(page, size));
     }
+
+    @Override
+    public List<Student> getByMajorJPQL(String major) {
+        return studentRepository.findStudentsByMajorJPQL(major);
+    }
+
+    @Override
+    public int deleteByEnrollmentYearJPQL(Integer year) {
+        return studentRepository.deleteStudentsByEnrollmentYearJPQL(year);
+    }
 }
